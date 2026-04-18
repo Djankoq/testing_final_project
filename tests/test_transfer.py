@@ -47,4 +47,4 @@ def test_empty_amount_transfer_fails(driver):
         assert error_message.is_displayed()
 
     except Exception:
-        pytest.fail("БАГ: Сообщение об ошибке не отобразилось! Перевод с пустой суммой пропущен.")
+        pytest.fail("❌ БАГ ВОСПРОИЗВЕДЕН: Сообщение об ошибке не отобразилось! Перевод с пустой суммой пропущен.")
