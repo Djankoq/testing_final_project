@@ -30,4 +30,4 @@ jobs:
           sleep 3
 
       - name: Run Pytest
-        run: pytest -v test_transfer.py
+        run: pytest -v
