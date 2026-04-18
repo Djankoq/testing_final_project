@@ -26,7 +26,7 @@ jobs:
 
       - name: Start local server
         run: |
-          python -m http.server 8000 & 
+          python -m http.server 8000 -d dist & 
           sleep 3
 
       - name: Run Pytest
