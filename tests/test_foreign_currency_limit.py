@@ -42,12 +42,7 @@ def test_foreign_currency_limit_validation(driver, currency_index, currency_name
     amount_input.clear()
     amount_input.send_keys("999")
 
-    try:
-        submit_button = driver.find_element(By.XPATH, "//span[@class='g-button__text']")
+    submit_buttons = driver.find_elements(By.XPATH, "//span[@class='g-button__text']")
 
-        if submit_button.is_displayed():
-            pytest.fail(
-                f"❌ БАГ ВОСПРОИЗВЕДЕН ({currency_name}): Кнопка «Перевести» появилась, хотя сумма перевода (50000) превышает баланс (30000)!")
-
-    except (NoSuchElementException, TimeoutException):
-        print(f"✅ Тест пройден для валюты {currency_name}: кнопка перевода недоступна.")
+    assert not submit_buttons[
+        0].is_displayed(), f"БАГ ВОСПРОИЗВЕДЕН: Кнопка «Перевести» доступна при сумме, превышающей баланс"

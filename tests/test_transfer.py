@@ -42,9 +42,4 @@ def test_empty_amount_transfer_fails(driver):
     submit_button = driver.find_element(By.XPATH, "//span[@class='g-button__text']")
     submit_button.click()
 
-    try:
-        error_message = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".error-message")))
-        assert error_message.is_displayed()
-
-    except Exception:
-        pytest.fail("❌ БАГ ВОСПРОИЗВЕДЕН: Сообщение об ошибке не отобразилось! Перевод с пустой суммой пропущен.")
+    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//*[contains(@class, 'error')]"))), "БАГ ВОСПРОИЗВЕДЕН: Перевод с пустой суммой выполнен"

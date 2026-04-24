@@ -39,8 +39,4 @@ def test_card_input_max_length(driver):
 
     actual_value_clean = actual_value.replace(" ", "")
 
-    if len(actual_value_clean) == 17:
-        pytest.fail(f"❌ БАГ ВОСПРОИЗВЕДЕН: Поле ввода приняло 17 цифр! Введенное значение: {actual_value}")
-
-    assert len(actual_value_clean) == 16, f"Ожидалось 16 символов, но в поле: {len(actual_value_clean)}"
-    print("✅ Тест пройден: поле ввода обрезало 17-й символ.")
+    assert len(actual_value_clean) == 16, f"БАГ ВОСПРОИЗВЕДЕН: Поле приняло 17 цифр"

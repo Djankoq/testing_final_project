@@ -45,10 +45,5 @@ def test_negative_amount_transfer_validation(driver):
     submit_button.click()
 
     time.sleep(3)
-    try:
-        error_message = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".error-message")))
-        assert error_message.is_displayed()
-
-    except Exception:
-        pytest.fail(
-            "❌ БАГ ВОСПРОИЗВЕДЕН (Critical): Форма успешно отправлена с отрицательной суммой (-500)! Сообщение об ошибке не появилось.")
+    assert wait.until(EC.visibility_of_element_located((By.XPATH,
+                                                        "//*[contains(@class, 'error')]"))), "БАГ ВОСПРОИЗВЕДЕН: Форма отправлена с суммой -500! Ошибка не появилась."

@@ -45,17 +45,8 @@ def test_commission_calculation_under_100_rubles(driver):
 
     actual_commission_text = commission_element.text
 
-    try:
-        actual_commission = float(actual_commission_text)
-    except ValueError:
-        pytest.fail(f"Не удалось распарсить значение комиссии: '{commission_element.text}'")
+    actual_commission = float(actual_commission_text)
 
     expected_commission = test_amount * 0.10
 
-    if actual_commission == 0 and expected_commission > 0:
-        pytest.fail(
-            f"❌ БАГ ВОСПРОИЗВЕДЕН: Комиссия для {test_amount} руб. равна 0! Ожидалось: {expected_commission} руб. (Возможно проблема с округлением на фронтенде).")
-
-    assert actual_commission == expected_commission, f"Неверный расчет комиссии. Ожидалось: {expected_commission}, Фактически: {actual_commission}"
-
-    print(f"✅ Тест пройден: комиссия рассчитана верно ({actual_commission} руб.)")
+    assert actual_commission == expected_commission, f"БАГ ВОСПРОИЗВЕДЕН: Комиссия для {test_amount} руб. равна {actual_commission}! Ожидалось: {expected_commission}."
